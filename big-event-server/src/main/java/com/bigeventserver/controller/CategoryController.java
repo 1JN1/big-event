@@ -1,5 +1,6 @@
 package com.bigeventserver.controller;
 
+import com.bigeventserver.pojo.entity.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class CategoryController {
 
     @GetMapping
     @Operation(summary = "测试")
-    public String test() {
+    public String test(User user) {
 
         return "test";
     }

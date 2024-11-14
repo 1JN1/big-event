@@ -5,6 +5,7 @@ import com.bigeventserver.enumeration.OperationType;
 import com.bigeventserver.pojo.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -36,6 +37,15 @@ public interface UserMapper {
             "VALUES (#{username}, #{password}, #{nickname}, #{email}, #{userPic}, #{createTime}, #{updateTime})")
     @AutoFill(OperationType.INSERT)
     void addUser(User user);
+
+    /**
+     * 根据id查询用户信息
+     *
+     * @param userId
+     * @return
+     */
+    @Select("SELECT * FROM user WHERE id = #{id}")
+    User getUserById(@Param("id") Long userId);
 }
 
 

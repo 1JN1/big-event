@@ -1,27 +1,22 @@
-package com.bigeventserver.pojo.entity;
+package com.bigeventserver.pojo.vo;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
- * 用户表
- *
  * @author 王文涛
- * @TableName user
- */
-@Schema(description = "用户实体类")
+ * @date 2024/11/14
+ * @description
+ **/
+
+@Schema(name = "返回给前端的用户信息")
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class User implements Serializable {
+public class UserVo implements Serializable {
+
     /**
      * ID
      */
@@ -34,11 +29,6 @@ public class User implements Serializable {
     @Schema(description = "用户名")
     private String username;
 
-    /**
-     * 密码
-     */
-    @Schema(description = "密码")
-    private String password;
 
     /**
      * 昵称
@@ -74,4 +64,5 @@ public class User implements Serializable {
 
     @Schema(hidden = true)
     private static final long serialVersionUID = 1L;
+
 }

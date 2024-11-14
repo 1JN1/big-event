@@ -13,7 +13,4 @@ public class UserConstant {
      * 默认昵称
      */
     public static final String DEFAULT_NICKNAME = "用户_" + UUID.randomUUID();
-
-    public static final String USER_EXIST = "用户已经存在";
-
 }

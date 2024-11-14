@@ -1,5 +1,6 @@
 package com.bigeventserver.service.impl;
 
+import com.bigeventserver.constant.ExceptionConstant;
 import com.bigeventserver.constant.UserConstant;
 import com.bigeventserver.exception.PasswordErrException;
 import com.bigeventserver.exception.UserExistException;
@@ -7,7 +8,10 @@ import com.bigeventserver.exception.UserNotFoundException;
 import com.bigeventserver.mapper.UserMapper;
 import com.bigeventserver.pojo.dto.UserLoginDto;
 import com.bigeventserver.pojo.entity.User;
+import com.bigeventserver.pojo.vo.UserVo;
 import com.bigeventserver.service.UserService;
+import com.bigeventserver.utils.ThreadLocalUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -35,7 +39,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.getUserByUserName(userLoginDto.getUsername());
 
         if (user != null) {
-            throw new UserExistException(UserConstant.USER_EXIST);
+            throw new UserExistException(ExceptionConstant.USER_EXIST);
         }
 
         String password = DigestUtils.md5DigestAsHex(userLoginDto.getPassword().getBytes());
@@ -62,7 +66,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.getUserByUserName(userLoginDto.getUsername());
 
         if (user == null) {
-            throw new UserNotFoundException("用户不存在");
+            throw new UserNotFoundException(ExceptionConstant.USER_NOT_EXIST);
         }
 
         String password = userLoginDto.getPassword();
@@ -72,10 +76,33 @@ public class UserServiceImpl implements UserService {
 
         // 密码错误
         if (!string.equals(user.getPassword())) {
-            throw new PasswordErrException("用户密码错误");
+            throw new PasswordErrException(ExceptionConstant.PASSWORD_ERROR);
         }
 
 
         return user;
+    }
+
+    /**
+     * 获取用户详细信息
+     *
+     * @return
+     */
+    @Override
+    public UserVo getUserInfo() {
+
+        // 获取用户id
+        Long userId = ThreadLocalUtil.getUserId();
+
+        User user = userMapper.getUserById(userId);
+
+        if (user == null) {
+            throw new UserNotFoundException(ExceptionConstant.USER_NOT_EXIST);
+        }
+
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(user, userVo);
+
+        return userVo;
     }
 }

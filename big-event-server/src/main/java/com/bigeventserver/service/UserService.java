@@ -2,6 +2,7 @@ package com.bigeventserver.service;
 
 import com.bigeventserver.pojo.dto.UserLoginDto;
 import com.bigeventserver.pojo.entity.User;
+import com.bigeventserver.pojo.vo.UserVo;
 
 /**
  * @author 王文涛
@@ -24,4 +25,11 @@ public interface UserService {
      * @return
      */
     User login(UserLoginDto userLoginDto);
+
+    /**
+     * 获取用户详细信息
+     *
+     * @return
+     */
+    UserVo getUserInfo();
 }

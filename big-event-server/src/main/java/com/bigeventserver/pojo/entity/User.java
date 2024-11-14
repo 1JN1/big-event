@@ -25,7 +25,7 @@ public class User implements Serializable {
      * ID
      */
     @Schema(description = "ID")
-    private Integer id;
+    private Long id;
 
     /**
      * 用户名

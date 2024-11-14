@@ -25,3 +25,9 @@ logging:
         mapper: debug
         service: info
         controller: info
+
+# JWT
+jwt:
+  token-name: token
+  ttl: 3600000 # 一小时
+  secret-key: wwt-big-event

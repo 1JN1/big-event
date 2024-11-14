@@ -18,7 +18,7 @@ public class Category implements Serializable {
      * ID
      */
     @Schema(description = "ID")
-    private Integer id;
+    private Long id;
 
     /**
      * 分类名称

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @Tag(name = "文档分类相关接口")
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/api/category")
 public class CategoryController {
 
     @GetMapping
     @Operation(summary = "测试")
-    public String test(User user) {
+    public String test() {
 
         return "test";
     }

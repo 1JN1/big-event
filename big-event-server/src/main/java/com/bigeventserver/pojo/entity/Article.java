@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
- * 
  * @author 王文涛
  * @TableName article
  */
@@ -18,7 +17,7 @@ public class Article implements Serializable {
      * ID
      */
     @Schema(description = "ID")
-    private Integer id;
+    private Long id;
 
     /**
      * 文章标题

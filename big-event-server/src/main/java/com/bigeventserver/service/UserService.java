@@ -1,6 +1,7 @@
 package com.bigeventserver.service;
 
 import com.bigeventserver.pojo.dto.UserLoginDto;
+import com.bigeventserver.pojo.entity.User;
 
 /**
  * @author 王文涛
@@ -15,4 +16,12 @@ public interface UserService {
      * @param userLoginDto
      */
     void register(UserLoginDto userLoginDto);
+
+    /**
+     * 用户登录
+     *
+     * @param userLoginDto
+     * @return
+     */
+    User login(UserLoginDto userLoginDto);
 }

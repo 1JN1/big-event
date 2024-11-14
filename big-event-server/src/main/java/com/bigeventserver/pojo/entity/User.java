@@ -1,10 +1,13 @@
 package com.bigeventserver.pojo.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 用户表
@@ -14,6 +17,9 @@ import lombok.Data;
  */
 @Schema(description = "用户实体类")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User implements Serializable {
     /**
      * ID
@@ -55,13 +61,13 @@ public class User implements Serializable {
      * 创建时间
      */
     @Schema(description = "创建时间")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 修改时间
      */
     @Schema(description = "修改时间")
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     @Schema(hidden = true)
     private static final long serialVersionUID = 1L;

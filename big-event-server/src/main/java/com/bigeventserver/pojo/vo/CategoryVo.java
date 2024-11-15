@@ -1,20 +1,22 @@
-package com.bigeventserver.pojo.entity;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
+package com.bigeventserver.pojo.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
- * 
  * @author 王文涛
- * @TableName category
- */
-@Schema(description = "分类实体类")
+ * @date 2024/11/15
+ * @description
+ **/
+
 @Data
-public class Category implements Serializable {
+@Schema(description = "文章分类")
+public class CategoryVo implements Serializable {
+
     /**
      * ID
      */
@@ -34,12 +36,6 @@ public class Category implements Serializable {
     private String categoryAlias;
 
     /**
-     * 创建人ID
-     */
-    @Schema(description = "创建人ID")
-    private Long createUser;
-
-    /**
      * 创建时间
      */
     @Schema(description = "创建时间")
@@ -55,4 +51,5 @@ public class Category implements Serializable {
 
     @Schema(hidden = true)
     private static final long serialVersionUID = 1L;
+
 }

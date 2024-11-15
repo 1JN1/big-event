@@ -54,7 +54,7 @@ public class Article implements Serializable {
      * 创建人ID
      */
     @Schema(description = "创建人ID")
-    private Integer createUser;
+    private Long createUser;
 
     /**
      * 创建时间

@@ -2,6 +2,7 @@ package com.bigeventserver.aspect;
 
 import com.bigeventserver.annotation.AutoFill;
 import com.bigeventserver.constant.AutoFillConstant;
+import com.bigeventserver.utils.ThreadLocalUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -56,6 +57,13 @@ public class AutoFillAspect {
                 try {
                     Method m1 = object.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_TIME, LocalDateTime.class);
                     Method m2 = object.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);
+
+                    try {
+                        Method m3 = object.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_USER, Long.class);
+                        m3.invoke(object, ThreadLocalUtil.getUserId());
+                    } catch (Exception e) {
+
+                    }
 
                     m1.invoke(object, now);
                     m2.invoke(object, now);

@@ -8,6 +8,8 @@ import com.bigeventserver.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -67,5 +69,17 @@ public class CategoryController {
 
         return Result.success();
     }
+
+    @GetMapping("/detail/{id}")
+    @Operation(summary = "根据id获取文章分类详情")
+    public Result<CategoryVo> detail(@PathVariable Long id) {
+
+        log.info("根据id获取文章分类详情, id={}", id);
+
+        CategoryVo categoryVo = categoryService.getDetail(id);
+
+        return Result.success(categoryVo);
+    }
+
 
 }

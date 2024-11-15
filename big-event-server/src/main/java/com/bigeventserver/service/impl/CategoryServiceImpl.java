@@ -73,4 +73,21 @@ public class CategoryServiceImpl implements CategoryService {
         categoryMapper.update(category);
 
     }
+
+    /**
+     * 根据id获取文章分类详情
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public CategoryVo getDetail(Long id) {
+
+        Category category = categoryMapper.getById(id);
+
+        CategoryVo categoryVo = new CategoryVo();
+        BeanUtils.copyProperties(category, categoryVo);
+
+        return categoryVo;
+    }
 }

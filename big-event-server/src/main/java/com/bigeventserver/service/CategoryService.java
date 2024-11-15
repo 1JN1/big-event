@@ -33,4 +33,12 @@ public interface CategoryService {
      * @param updateCategoryDto
      */
     void update(UpdateCategoryDto updateCategoryDto);
+
+    /**
+     * 根据id获取文章分类详情
+     *
+     * @param id
+     * @return
+     */
+    CategoryVo getDetail(Long id);
 }

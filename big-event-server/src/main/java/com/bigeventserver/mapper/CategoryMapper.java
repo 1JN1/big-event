@@ -1,7 +1,10 @@
 package com.bigeventserver.mapper;
 
+import com.bigeventserver.annotation.AutoFill;
+import com.bigeventserver.enumeration.OperationType;
 import com.bigeventserver.pojo.entity.Category;
 import com.bigeventserver.pojo.vo.CategoryVo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -23,6 +26,18 @@ public interface CategoryMapper {
      */
     @Select("SELECT * FROM category")
     List<Category> list();
+
+    /**
+     * 新增文章分类
+     *
+     * @param category
+     */
+    @Insert("INSERT INTO category(category_name, category_alias, " +
+            "create_user, create_time, update_time) " +
+            "VALUES (#{categoryName}, #{categoryAlias}, #{createUser}," +
+            "#{createTime}, #{updateTime})")
+    @AutoFill(OperationType.INSERT)
+    void insert(Category category);
 }
 
 

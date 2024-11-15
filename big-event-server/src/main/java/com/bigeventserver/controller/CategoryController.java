@@ -1,16 +1,17 @@
 package com.bigeventserver.controller;
 
+import com.bigeventserver.pojo.dto.CategoryDto;
 import com.bigeventserver.pojo.vo.CategoryVo;
 import com.bigeventserver.pojo.vo.Result;
 import com.bigeventserver.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,5 +43,16 @@ public class CategoryController {
     }
 
 
+    @PostMapping
+    @Operation(summary = "新增文章分类")
+    @CacheEvict(cacheNames = "categoryListCache", allEntries = true)
+    public Result<String> add(@RequestBody @Valid CategoryDto categoryDto) {
+
+        log.info("新增文章分类, categoryDto={}", categoryDto);
+
+        categoryService.add(categoryDto);
+
+        return Result.success();
+    }
 
 }

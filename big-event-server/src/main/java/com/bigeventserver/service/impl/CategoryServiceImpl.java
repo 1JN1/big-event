@@ -1,6 +1,7 @@
 package com.bigeventserver.service.impl;
 
 import com.bigeventserver.mapper.CategoryMapper;
+import com.bigeventserver.pojo.dto.CategoryDto;
 import com.bigeventserver.pojo.entity.Category;
 import com.bigeventserver.pojo.vo.CategoryVo;
 import com.bigeventserver.service.CategoryService;
@@ -41,5 +42,19 @@ public class CategoryServiceImpl implements CategoryService {
         });
 
         return categoryVos;
+    }
+
+    /**
+     * 新增文章分类
+     *
+     * @param categoryDto
+     */
+    @Override
+    public void add(CategoryDto categoryDto) {
+
+        Category category = new Category();
+        BeanUtils.copyProperties(categoryDto, category);
+
+        categoryMapper.insert(category);
     }
 }

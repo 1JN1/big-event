@@ -30,7 +30,6 @@ public class UpdateArticleDto {
     @NotEmpty
     @Status
     @Schema(description = "发布状态", allowableValues = {"已发布", "草稿"})
-
     private String state;
 
     @NotNull

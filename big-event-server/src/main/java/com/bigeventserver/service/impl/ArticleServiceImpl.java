@@ -5,6 +5,7 @@ import com.bigeventserver.exception.CategoryNotExist;
 import com.bigeventserver.mapper.ArticleMapper;
 import com.bigeventserver.mapper.CategoryMapper;
 import com.bigeventserver.pojo.dto.AddArticleDto;
+import com.bigeventserver.pojo.dto.UpdateArticleDto;
 import com.bigeventserver.pojo.entity.Article;
 import com.bigeventserver.pojo.entity.Category;
 import com.bigeventserver.service.ArticleService;
@@ -49,6 +50,26 @@ public class ArticleServiceImpl implements ArticleService {
         article.setCoverImg("https://gips0.baidu.com/it/u=1690853528,2506870245&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024");
 
         articleMapper.insert(article);
+    }
 
+    /**
+     * 更新文章
+     *
+     * @param updateArticleDto
+     */
+    @Override
+    public void update(UpdateArticleDto updateArticleDto) {
+
+        Category category = categoryMapper.getById(updateArticleDto.getCategoryId());
+
+        // 文章分类不存在
+        if (category == null) {
+            throw new CategoryNotExist(ExceptionConstant.CATEGORY_NOT_EXIST);
+        }
+
+        Article article = new Article();
+        BeanUtils.copyProperties(updateArticleDto, article);
+
+        articleMapper.update(article);
     }
 }

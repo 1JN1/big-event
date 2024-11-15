@@ -26,6 +26,14 @@ public interface ArticleMapper {
             "VALUES (#{title}, #{content}, #{coverImg}, #{state}, #{categoryId}," +
             "#{createUser}, #{createTime}, #{updateTime})")
     void insert(Article article);
+
+    /**
+     * 更新文章
+     *
+     * @param article
+     */
+    @AutoFill(OperationType.UPDATE)
+    void update(Article article);
 }
 
 

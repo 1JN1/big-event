@@ -1,6 +1,7 @@
 package com.bigeventserver.controller;
 
 import com.bigeventserver.pojo.dto.AddArticleDto;
+import com.bigeventserver.pojo.dto.UpdateArticleDto;
 import com.bigeventserver.pojo.vo.Result;
 import com.bigeventserver.service.ArticleService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,10 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 王文涛
@@ -38,4 +36,14 @@ public class ArticleController {
         return Result.success();
     }
 
+    @PutMapping
+    @Operation(summary = "更新文章")
+    public Result<String> update(@RequestBody @Valid UpdateArticleDto updateArticleDto) {
+
+        log.info("更新文章, updateArticleDto: {}", updateArticleDto);
+
+        articleService.update(updateArticleDto);
+
+        return Result.success();
+    }
 }

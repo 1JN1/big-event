@@ -46,6 +46,14 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM user WHERE id = #{id}")
     User getUserById(@Param("id") Long userId);
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     */
+    @AutoFill(OperationType.UPDATE)
+    void update(User user);
 }
 
 

@@ -13,4 +13,8 @@ public class ExceptionConstant {
 
     public static final String USER_EXIST = "用户已经存在";
 
+    public static final String TWICE_NOT_EQUAL = "两次输入的密码不一致";
+
+    public static final String NEW_PWD_EQUAL_OLD_PWD = "新密码与旧密码相同";
+
 }

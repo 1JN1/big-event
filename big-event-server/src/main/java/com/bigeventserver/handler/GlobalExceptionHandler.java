@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(BaseException.class)
-    public Result<String> handleException(BaseException ex) {
+    @ExceptionHandler(Exception.class)
+    public Result<String> handleException(Exception ex) {
 
         String message = ex.getMessage();
 

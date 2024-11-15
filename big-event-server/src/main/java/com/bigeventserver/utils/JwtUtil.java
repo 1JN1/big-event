@@ -1,6 +1,7 @@
 package com.bigeventserver.utils;
 
 
+import com.bigeventserver.constant.JwtClaimsConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -35,6 +36,7 @@ public class JwtUtil {
 
         // 设置jwt的body
         JwtBuilder builder = Jwts.builder()
+                .setSubject(String.valueOf(claims.get(JwtClaimsConstant.USER_ID)))
                 // 如果有私有声明，一定要先设置这个自己创建的私有的声明，这个是给builder的claim赋值，一旦写在标准的声明赋值之后，就是覆盖了那些标准的声明的
                 .setClaims(claims)
                 // 设置签名使用的签名算法和签名使用的秘钥

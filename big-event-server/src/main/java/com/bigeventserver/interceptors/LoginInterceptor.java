@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -26,6 +27,9 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
     private JwtProperties jwtProperties;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
@@ -33,6 +37,11 @@ public class LoginInterceptor implements HandlerInterceptor {
         String token = request.getHeader(jwtProperties.getTokenName());
 
         try {
+
+            if (redisTemplate.opsForValue().get(jwtProperties.getTokenName()) == null) {
+                response.setStatus(401);
+                return false;
+            }
 
             Claims claims = JwtUtil.parseJwt(jwtProperties.getSecretKey(), token);
 

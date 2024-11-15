@@ -41,4 +41,11 @@ public interface CategoryService {
      * @return
      */
     CategoryVo getDetail(Long id);
+
+    /**
+     * 删除文章分类
+     *
+     * @param id
+     */
+    void delete(Long id);
 }

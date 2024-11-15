@@ -4,6 +4,7 @@ import com.bigeventserver.annotation.AutoFill;
 import com.bigeventserver.enumeration.OperationType;
 import com.bigeventserver.pojo.entity.Category;
 import com.bigeventserver.pojo.vo.CategoryVo;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -55,6 +56,14 @@ public interface CategoryMapper {
      */
     @Select("SELECT * FROM category WHERE id = #{id}")
     Category getById(Long id);
+
+    /**
+     * 删除文章分类
+     *
+     * @param id
+     */
+    @Delete("DELETE FROM category WHERE id = #{id}")
+    void deleteById(Long id);
 }
 
 

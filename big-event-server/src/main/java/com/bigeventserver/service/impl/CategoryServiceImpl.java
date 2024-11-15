@@ -90,4 +90,16 @@ public class CategoryServiceImpl implements CategoryService {
 
         return categoryVo;
     }
+
+    /**
+     * 删除文章分类
+     *
+     * @param id
+     */
+    @Override
+    public void delete(Long id) {
+
+        categoryMapper.deleteById(id);
+
+    }
 }

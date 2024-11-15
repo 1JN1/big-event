@@ -8,8 +8,6 @@ import com.bigeventserver.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -81,5 +79,17 @@ public class CategoryController {
         return Result.success(categoryVo);
     }
 
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "删除文章分类")
+    @CacheEvict(cacheNames = "categoryListCache", allEntries = true)
+    public Result<String> delete(@PathVariable Long id) {
+
+        log.info("删除文章分类, id={}", id);
+
+        categoryService.delete(id);
+
+        return Result.success();
+    }
 
 }

@@ -17,4 +17,6 @@ public class ExceptionConstant {
 
     public static final String NEW_PWD_EQUAL_OLD_PWD = "新密码与旧密码相同";
 
+    public static final String CATEGORY_NOT_EXIST = "文章分类不存在";
+
 }

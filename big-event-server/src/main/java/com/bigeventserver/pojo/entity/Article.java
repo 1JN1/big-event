@@ -48,7 +48,7 @@ public class Article implements Serializable {
      * 文章分类ID
      */
     @Schema(description = "文章分类ID")
-    private Integer categoryId;
+    private Long categoryId;
 
     /**
      * 创建人ID

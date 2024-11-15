@@ -1,6 +1,7 @@
 package com.bigeventserver.controller;
 
 import com.bigeventserver.pojo.dto.CategoryDto;
+import com.bigeventserver.pojo.dto.UpdateCategoryDto;
 import com.bigeventserver.pojo.vo.CategoryVo;
 import com.bigeventserver.pojo.vo.Result;
 import com.bigeventserver.service.CategoryService;
@@ -51,6 +52,18 @@ public class CategoryController {
         log.info("新增文章分类, categoryDto={}", categoryDto);
 
         categoryService.add(categoryDto);
+
+        return Result.success();
+    }
+
+    @PutMapping
+    @Operation(summary = "更新文章分类")
+    @CacheEvict(cacheNames = "categoryListCache", allEntries = true)
+    public Result<String> update(@RequestBody @Valid UpdateCategoryDto updateCategoryDto) {
+
+        log.info("更新文章, updateCategoryDto={}", updateCategoryDto);
+
+        categoryService.update(updateCategoryDto);
 
         return Result.success();
     }

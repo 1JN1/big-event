@@ -5,16 +5,31 @@
 <mapper namespace="com.bigeventserver.mapper.CategoryMapper">
 
     <resultMap id="BaseResultMap" type="com.bigeventserver.pojo.entity.Category">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
-            <result property="categoryAlias" column="category_alias" jdbcType="VARCHAR"/>
-            <result property="createUser" column="create_user" jdbcType="INTEGER"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+        <result property="categoryAlias" column="category_alias" jdbcType="VARCHAR"/>
+        <result property="createUser" column="create_user" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,category_name,category_alias,
         create_user,create_time,update_time
     </sql>
+
+    <!-- 更新文章分类 -->
+    <update id="update">
+        update category
+        <set>
+            <if test="categoryName != null and categoryName !=''">
+                category_name = #{categoryName},
+            </if>
+            <if test="categoryAlias != null and categoryAlias !=''">
+                category_alias = #{categoryAlias},
+            </if>
+            update_time = #{updateTime},
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

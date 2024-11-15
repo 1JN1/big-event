@@ -2,6 +2,7 @@ package com.bigeventserver.service.impl;
 
 import com.bigeventserver.mapper.CategoryMapper;
 import com.bigeventserver.pojo.dto.CategoryDto;
+import com.bigeventserver.pojo.dto.UpdateCategoryDto;
 import com.bigeventserver.pojo.entity.Category;
 import com.bigeventserver.pojo.vo.CategoryVo;
 import com.bigeventserver.service.CategoryService;
@@ -56,5 +57,20 @@ public class CategoryServiceImpl implements CategoryService {
         BeanUtils.copyProperties(categoryDto, category);
 
         categoryMapper.insert(category);
+    }
+
+    /**
+     * 更新文章分类
+     *
+     * @param updateCategoryDto
+     */
+    @Override
+    public void update(UpdateCategoryDto updateCategoryDto) {
+
+        Category category = new Category();
+        BeanUtils.copyProperties(updateCategoryDto, category);
+
+        categoryMapper.update(category);
+
     }
 }

@@ -1,8 +1,10 @@
 package com.bigeventserver.controller;
 
 import com.bigeventserver.pojo.dto.AddArticleDto;
+import com.bigeventserver.pojo.dto.ArticlePageDto;
 import com.bigeventserver.pojo.dto.UpdateArticleDto;
 import com.bigeventserver.pojo.entity.Article;
+import com.bigeventserver.pojo.vo.PageResult;
 import com.bigeventserver.pojo.vo.Result;
 import com.bigeventserver.service.ArticleService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +13,8 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author 王文涛
@@ -68,5 +72,16 @@ public class ArticleController {
         articleService.delete(id);
 
         return Result.success();
+    }
+
+    @GetMapping
+    @Operation(summary = "分页条件查询")
+    public Result<PageResult<Article>> list(@Valid ArticlePageDto articlePageDto) {
+
+        log.info("分页条件查询, articlePageDto: {}", articlePageDto);
+
+        PageResult<Article> articles = articleService.list(articlePageDto);
+
+        return Result.success(articles);
     }
 }

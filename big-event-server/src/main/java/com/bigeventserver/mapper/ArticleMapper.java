@@ -2,7 +2,9 @@ package com.bigeventserver.mapper;
 
 import com.bigeventserver.annotation.AutoFill;
 import com.bigeventserver.enumeration.OperationType;
+import com.bigeventserver.pojo.dto.ArticlePageDto;
 import com.bigeventserver.pojo.entity.Article;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -52,6 +54,13 @@ public interface ArticleMapper {
      */
     @Select("DELETE FROM article WHERE id = #{id}")
     void deleteById(Long id);
+
+    /**
+     * 条件查询
+     *
+     * @return
+     */
+    Page<Article> list(ArticlePageDto articlePageDto);
 }
 
 

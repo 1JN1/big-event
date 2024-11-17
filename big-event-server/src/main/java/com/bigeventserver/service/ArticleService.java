@@ -1,8 +1,10 @@
 package com.bigeventserver.service;
 
 import com.bigeventserver.pojo.dto.AddArticleDto;
+import com.bigeventserver.pojo.dto.ArticlePageDto;
 import com.bigeventserver.pojo.dto.UpdateArticleDto;
 import com.bigeventserver.pojo.entity.Article;
+import com.bigeventserver.pojo.vo.PageResult;
 
 /**
  * @author 王文涛
@@ -39,4 +41,12 @@ public interface ArticleService {
      * @param id
      */
     void delete(Long id);
+
+    /**
+     * 分页条件查询
+     *
+     * @param articlePageDto
+     * @return
+     */
+    PageResult<Article> list(ArticlePageDto articlePageDto);
 }

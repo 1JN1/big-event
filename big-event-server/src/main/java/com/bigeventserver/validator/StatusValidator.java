@@ -25,10 +25,11 @@ public class StatusValidator implements ConstraintValidator<Status, String> {
     public boolean isValid(String status, ConstraintValidatorContext constraintValidatorContext) {
 
         if (status == null) {
-            return false;
+            return true;
         }
+
         for (String acceptedValue : acceptedValues) {
-            if (acceptedValue.equals(status)) {
+            if (status.equals(acceptedValue)) {
                 return true;
             }
         }

@@ -5,13 +5,19 @@ import com.bigeventserver.exception.CategoryNotExist;
 import com.bigeventserver.mapper.ArticleMapper;
 import com.bigeventserver.mapper.CategoryMapper;
 import com.bigeventserver.pojo.dto.AddArticleDto;
+import com.bigeventserver.pojo.dto.ArticlePageDto;
 import com.bigeventserver.pojo.dto.UpdateArticleDto;
 import com.bigeventserver.pojo.entity.Article;
 import com.bigeventserver.pojo.entity.Category;
+import com.bigeventserver.pojo.vo.PageResult;
 import com.bigeventserver.service.ArticleService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author 王文涛
@@ -93,5 +99,22 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void delete(Long id) {
         articleMapper.deleteById(id);
+    }
+
+    /**
+     * 分页条件查询
+     *
+     * @param articlePageDto
+     * @return
+     */
+    @Override
+    public PageResult<Article> list(ArticlePageDto articlePageDto) {
+
+
+        PageHelper.startPage(articlePageDto.getPage(), articlePageDto.getSize());
+
+        Page<Article> articlePage = articleMapper.list(articlePageDto);
+
+        return new PageResult<>(articlePage.getTotal(), articlePage.getResult());
     }
 }

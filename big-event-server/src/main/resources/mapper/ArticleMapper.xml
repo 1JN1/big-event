@@ -45,4 +45,16 @@
         </set>
         where id = #{id}
     </update>
+    <!-- 条件查询 -->
+    <select id="list" resultType="com.bigeventserver.pojo.entity.Article">
+        select * from article
+        <where>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+            <if test="state != null and state !=''">
+                and state = #{state}
+            </if>
+        </where>
+    </select>
 </mapper>

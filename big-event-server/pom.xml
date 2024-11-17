@@ -25,6 +25,7 @@
         <jjwt.version>0.9.1</jjwt.version>
         <jaxb.version>2.3.1</jaxb.version>
         <validation.version>3.1.0</validation.version>
+        <pagehelper.version>1.4.7</pagehelper.version>
     </properties>
 
     <dependencies>
@@ -117,6 +118,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- pagehelper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.version}</version>
         </dependency>
 
         <dependency>

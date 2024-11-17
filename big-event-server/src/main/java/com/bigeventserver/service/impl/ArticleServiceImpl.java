@@ -72,4 +72,16 @@ public class ArticleServiceImpl implements ArticleService {
 
         articleMapper.update(article);
     }
+
+    /**
+     * 根据id获取文章详情
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Article detail(Long id) {
+
+        return articleMapper.getById(id);
+    }
 }

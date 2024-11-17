@@ -2,6 +2,7 @@ package com.bigeventserver.controller;
 
 import com.bigeventserver.pojo.dto.AddArticleDto;
 import com.bigeventserver.pojo.dto.UpdateArticleDto;
+import com.bigeventserver.pojo.entity.Article;
 import com.bigeventserver.pojo.vo.Result;
 import com.bigeventserver.service.ArticleService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -45,5 +46,16 @@ public class ArticleController {
         articleService.update(updateArticleDto);
 
         return Result.success();
+    }
+
+    @GetMapping("/detail/{id}")
+    @Operation(summary = "根据id获取文章详情")
+    public Result<Article> detail(@PathVariable Long id) {
+
+        log.info("根据id获取文章详情, id: {}", id);
+
+        Article article = articleService.detail(id);
+
+        return Result.success(article);
     }
 }

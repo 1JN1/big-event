@@ -2,6 +2,7 @@ package com.bigeventserver.service;
 
 import com.bigeventserver.pojo.dto.AddArticleDto;
 import com.bigeventserver.pojo.dto.UpdateArticleDto;
+import com.bigeventserver.pojo.entity.Article;
 
 /**
  * @author 王文涛
@@ -23,4 +24,12 @@ public interface ArticleService {
      * @param updateArticleDto
      */
     void update(UpdateArticleDto updateArticleDto);
+
+    /**
+     * 根据id获取文章详情
+     *
+     * @param id
+     * @return
+     */
+    Article detail(Long id);
 }

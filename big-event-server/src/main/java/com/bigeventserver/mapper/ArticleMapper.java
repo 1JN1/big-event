@@ -5,6 +5,7 @@ import com.bigeventserver.enumeration.OperationType;
 import com.bigeventserver.pojo.entity.Article;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author 王文涛
@@ -34,6 +35,15 @@ public interface ArticleMapper {
      */
     @AutoFill(OperationType.UPDATE)
     void update(Article article);
+
+    /**
+     * 根据id获取文章
+     *
+     * @param id
+     * @return
+     */
+    @Select("SELECT * FROM article WHERE id = #{id}")
+    Article getById(Long id);
 }
 
 

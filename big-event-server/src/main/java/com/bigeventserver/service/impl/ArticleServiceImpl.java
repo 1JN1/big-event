@@ -84,4 +84,14 @@ public class ArticleServiceImpl implements ArticleService {
 
         return articleMapper.getById(id);
     }
+
+    /**
+     * 根据id删除文章
+     *
+     * @param id
+     */
+    @Override
+    public void delete(Long id) {
+        articleMapper.deleteById(id);
+    }
 }

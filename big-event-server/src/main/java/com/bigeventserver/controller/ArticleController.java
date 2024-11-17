@@ -58,4 +58,15 @@ public class ArticleController {
 
         return Result.success(article);
     }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "根据id删除文章")
+    public Result<String> delete(@PathVariable Long id) {
+
+        log.info("根据id删除文章, id: {}", id);
+
+        articleService.delete(id);
+
+        return Result.success();
+    }
 }

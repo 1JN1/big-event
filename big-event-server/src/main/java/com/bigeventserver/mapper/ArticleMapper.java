@@ -44,6 +44,14 @@ public interface ArticleMapper {
      */
     @Select("SELECT * FROM article WHERE id = #{id}")
     Article getById(Long id);
+
+    /**
+     * 根据id删除文章
+     *
+     * @param id
+     */
+    @Select("DELETE FROM article WHERE id = #{id}")
+    void deleteById(Long id);
 }
 
 

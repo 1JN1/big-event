@@ -32,4 +32,11 @@ public interface ArticleService {
      * @return
      */
     Article detail(Long id);
+
+    /**
+     * 根据id删除文章
+     *
+     * @param id
+     */
+    void delete(Long id);
 }

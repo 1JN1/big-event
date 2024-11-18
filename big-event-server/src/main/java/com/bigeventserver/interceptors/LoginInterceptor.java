@@ -1,7 +1,6 @@
 package com.bigeventserver.interceptors;
 
 import com.bigeventserver.constant.JwtClaimsConstant;
-import com.bigeventserver.exception.UserNotFoundException;
 import com.bigeventserver.properties.JwtProperties;
 import com.bigeventserver.utils.JwtUtil;
 import com.bigeventserver.utils.ThreadLocalUtil;

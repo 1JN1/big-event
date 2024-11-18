@@ -41,8 +41,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
         String[] allowedOrigins = corsProperties.getAllowedOrigins();
         String[] allowedMethods = corsProperties.getAllowedMethods();
 
-        CorsRegistration registration = registry.addMapping("/**").allowedHeaders(jwtProperties.getTokenName());
-
+        CorsRegistration registration = registry.addMapping("/**");
 
         if (allowedOrigins != null && allowedOrigins.length > 0) {
             registration.allowedOrigins(allowedOrigins);

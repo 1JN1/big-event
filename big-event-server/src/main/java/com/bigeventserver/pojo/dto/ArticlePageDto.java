@@ -27,8 +27,8 @@ public class ArticlePageDto {
     @Min(1)
     private Integer size;
 
-    @Schema(description = "分类ID")
-    private Long categoryId;
+    @Schema(description = "分类名")
+    private String categoryName;
 
     @Schema(description = "发布状态")
     @Status

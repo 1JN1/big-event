@@ -52,6 +52,8 @@ public class WebConfig extends WebMvcConfigurationSupport {
             registration.allowedMethods(allowedMethods);
         }
 
+
+
     }
 
     @Override

@@ -1,16 +1,11 @@
 package com.bigeventserver.pojo.dto;
 
 import com.bigeventserver.annotation.Status;
-import com.bigeventserver.pojo.entity.Article;
-import com.bigeventserver.pojo.vo.PageResult;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Data;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 /**
  * @author 王文涛
@@ -19,6 +14,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
  **/
 @Schema(description = "条件分页查询文章请求参数")
 @Data
+@Builder
 public class ArticlePageDto {
 
     @Schema(description = "当前页", defaultValue = "1")

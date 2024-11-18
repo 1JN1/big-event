@@ -37,3 +37,16 @@ jwt:
   token-name: token
   ttl: 3600000 # 一小时
   secret-key: wwt-big-event
+
+# Cors
+cors:
+  allowed-origins:
+    - http://localhost:7070
+    - http://192.168.227.1:7070
+    - http://172.19.0.1:7070
+  allowed-methods:
+    - GET
+    - PUT
+    - POST
+    - DELETE
+    - PATCH

@@ -2,6 +2,7 @@ package com.bigeventserver.config;
 
 import com.bigeventserver.interceptors.LoginInterceptor;
 import com.bigeventserver.properties.CorsProperties;
+import com.bigeventserver.properties.JwtProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
@@ -23,6 +24,9 @@ public class WebConfig extends WebMvcConfigurationSupport {
     @Autowired
     private CorsProperties corsProperties;
 
+    @Autowired
+    private JwtProperties jwtProperties;
+
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
@@ -34,15 +38,11 @@ public class WebConfig extends WebMvcConfigurationSupport {
     protected void addCorsMappings(CorsRegistry registry) {
 
 
-        String[] allowedHeaders = corsProperties.getAllowedHeaders();
         String[] allowedOrigins = corsProperties.getAllowedOrigins();
         String[] allowedMethods = corsProperties.getAllowedMethods();
 
-        CorsRegistration registration = registry.addMapping("/**");
+        CorsRegistration registration = registry.addMapping("/**").allowedHeaders(jwtProperties.getTokenName());
 
-        if (allowedHeaders != null && allowedHeaders.length > 0) {
-            registration.allowedHeaders(allowedHeaders);
-        }
 
         if (allowedOrigins != null && allowedOrigins.length > 0) {
             registration.allowedOrigins(allowedOrigins);
@@ -51,9 +51,6 @@ public class WebConfig extends WebMvcConfigurationSupport {
         if (allowedMethods != null && allowedMethods.length > 0) {
             registration.allowedMethods(allowedMethods);
         }
-
-
-
     }
 
     @Override

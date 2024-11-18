@@ -9,6 +9,7 @@ import com.bigeventserver.pojo.dto.ArticlePageDto;
 import com.bigeventserver.pojo.dto.UpdateArticleDto;
 import com.bigeventserver.pojo.entity.Article;
 import com.bigeventserver.pojo.entity.Category;
+import com.bigeventserver.pojo.vo.ArticleVo;
 import com.bigeventserver.pojo.vo.PageResult;
 import com.bigeventserver.service.ArticleService;
 import com.github.pagehelper.Page;
@@ -17,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -108,13 +110,33 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public PageResult<Article> list(ArticlePageDto articlePageDto) {
+    public PageResult<ArticleVo> list(ArticlePageDto articlePageDto) {
 
 
         PageHelper.startPage(articlePageDto.getPage(), articlePageDto.getSize());
 
         Page<Article> articlePage = articleMapper.list(articlePageDto);
 
-        return new PageResult<>(articlePage.getTotal(), articlePage.getResult());
+        List<Article> result = articlePage.getResult();
+
+        List<ArticleVo> articleVoList = new ArrayList<>();
+
+        result.forEach(
+                article -> {
+                    ArticleVo articleVo = new ArticleVo();
+
+                    BeanUtils.copyProperties(article, articleVo);
+
+                    // 根据分类id查询分类信息
+                    Category category = categoryMapper.getById(article.getCategoryId());
+
+                    articleVo.setCategory(category);
+
+                    articleVoList.add(articleVo);
+
+                }
+        );
+
+        return new PageResult<>(articlePage.getTotal(), articleVoList);
     }
 }

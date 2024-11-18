@@ -4,6 +4,7 @@ import com.bigeventserver.pojo.dto.AddArticleDto;
 import com.bigeventserver.pojo.dto.ArticlePageDto;
 import com.bigeventserver.pojo.dto.UpdateArticleDto;
 import com.bigeventserver.pojo.entity.Article;
+import com.bigeventserver.pojo.vo.ArticleVo;
 import com.bigeventserver.pojo.vo.PageResult;
 
 /**
@@ -48,5 +49,5 @@ public interface ArticleService {
      * @param articlePageDto
      * @return
      */
-    PageResult<Article> list(ArticlePageDto articlePageDto);
+    PageResult<ArticleVo> list(ArticlePageDto articlePageDto);
 }

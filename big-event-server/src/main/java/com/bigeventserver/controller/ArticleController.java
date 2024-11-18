@@ -4,6 +4,7 @@ import com.bigeventserver.pojo.dto.AddArticleDto;
 import com.bigeventserver.pojo.dto.ArticlePageDto;
 import com.bigeventserver.pojo.dto.UpdateArticleDto;
 import com.bigeventserver.pojo.entity.Article;
+import com.bigeventserver.pojo.vo.ArticleVo;
 import com.bigeventserver.pojo.vo.PageResult;
 import com.bigeventserver.pojo.vo.Result;
 import com.bigeventserver.service.ArticleService;
@@ -76,11 +77,11 @@ public class ArticleController {
 
     @GetMapping
     @Operation(summary = "分页条件查询")
-    public Result<PageResult<Article>> list(@Valid ArticlePageDto articlePageDto) {
+    public Result<PageResult<ArticleVo>> list(@Valid ArticlePageDto articlePageDto) {
 
         log.info("分页条件查询, articlePageDto: {}", articlePageDto);
 
-        PageResult<Article> articles = articleService.list(articlePageDto);
+        PageResult<ArticleVo> articles = articleService.list(articlePageDto);
 
         return Result.success(articles);
     }
